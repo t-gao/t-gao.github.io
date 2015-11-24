@@ -1,15 +1,36 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>t-gao's homepage</title>
-  
-<!-- Add some style to your site, see http://getbootstrap.com for details -->
-  <link rel="stylesheet"
-  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-</head>
-<body>
-  <h1>WELCOME!</h1>
-  <p>hello</p>
-</body>
-</html>
+---
+layout: page
+---
+
+{% for post in site.posts limit:10 %}
+  <h3 class="post-title">
+    <a href="{{post.url | prepend:site.baseurl | prepend:site.url}}">
+      {{ post.title }}
+    </a>
+  </h3>
+
+  <div class="post-meta">
+  <div class="post-time">
+    <i class="fa fa-calendar"></i>
+    <time>{{ post.date | date_to_string }}</time>
+  </div>
+  <ul>
+    {% for tag in post.tags %}
+    <li><a href="{{site.baseurl | prepend:site.url}}/tag/{{ tag }}">{{ tag }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+
+  <div class="post-descr">
+    <p>
+      {{ post.description }}
+    </p>
+  </div>
+  {% endfor %}
+
+
+<div class="post-footer">
+  <div class="column-full">
+    <h3><a href="{{ '/archive.html' | prepend: site.baseurl | prepend: site.url }}">Blog archive</a></h3>
+  </div>
+</div>
