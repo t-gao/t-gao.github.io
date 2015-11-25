@@ -4,45 +4,44 @@
 
     {% if site.social.github %}
     <li>
-        <a title="{{ site.social.github }} on Github"
-            href="https://github.com/{{ site.social.github }}"
+        <a title="{{ site.social.github.name }} on Github"
+            href="https://github.com/{{ site.social.github.id }}"
             target="_blank"><i class="fa fa-github fa-2x"></i></a>
     </li>
     {% endif %}
 
     {% if site.social.stackoverflow %}
     <li>
-        <a title="{{ site.social.stackoverflow }} on StackOverflow"
-            href="http://stackoverflow.com/users/1252056/{{ site.social.stackoverflow }}"
+        <a title="{{ site.social.stackoverflow.name }} on StackOverflow"
+            href="http://stackoverflow.com/users/{{ site.social.stackoverflow.id }}"
             target="_blank"><i class="fa fa-stack-overflow fa-2x"></i></a>
     </li>
     {% endif %}
 
     {% if site..social.linkedin %}
     <li>
-        <a title="{{ site.social.github }} on LinkedIn"
-            href="https://www.linkedin.com/in/{{ site.social.linkedin }}"
+        <a title="{{ site.social.linkedin.name }} on LinkedIn"
+            href="https://www.linkedin.com/in/{{ site.social.linkedin.id }}"
             target="_blank"><i class="fa fa-linkedin fa-2x"></i></a>
     </li>
     {% endif %}
 
+	{% if site..social.googleplus %}
+    <li>
+        <a title="{{ site.social.googleplus.name }} on Google+"
+            href="https://plus.google.com/u/0/{{ site.social.googleplus.id }}"
+            target="_blank"><i class="fa fa-google-plus fa-2x"></i></a>
+    </li>
+    {% endif %}
 
     {% if site.social.instagram %}
     <li>
-        <a title="{{ site.social.instagram }} on Instagram"
-            href="https://instagram.com/{{ site.social.instagram }}"
+        <a title="{{ site.social.instagram.name }} on Instagram"
+            href="https://instagram.com/{{ site.social.instagram.id }}"
             target="_blank"><i class="fa fa-instagram fa-2x"></i></a>
     </li>
     {% endif %}
 
-
-    {% if site.social.lastfm %}
-    <li>
-        <a title="{{ site.social.lastfm }} on LinkedIn"
-            href="http://lastfm.com/user/{{ site.social.lastfm }}"
-            target="_blank"><i class="fa fa-lastfm fa-2x"></i></a>
-    </li>
-    {% endif %}
 
     {% if site.social.rss %}
     <li>
