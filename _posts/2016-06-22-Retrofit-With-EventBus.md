@@ -17,15 +17,17 @@ EventBus是一个Android平台的事件总线框架，使用简单、轻量、�
 ### 为什么使用EventBus
 大家知道Retrofit中声明一个API接口的方式如下：
 我们定义一个interface 叫做 `MyRetrofitService`（我知道`MyXxx`这样的命名有点土, 但是作为示例, 观众朋友们忍耐一下吧-_- ）, 里面声明一个登录方法：
-```
+
+```java
 @Headers("Content-Type: application/json;charset=UTF-8")
 @POST("/api/appLogin")
 void login(@Body LoginReq loginReqBody, Callback<LoginResp> cb);
 ```
+
 其中`Callback<LoginResp>`是使用Retrofit提供的接口`retrofit.Callback<T>`，用于接收请求响应.  `LoginResp`是`BaseResp`的子类.
 
 如果我们在UI层代码中调用接口的时候是类似下面的写法：
-```Java
+```java
 MyRestService.getInstance().login(new loginReqBody("username","password"), new Callback<LoginResp> {
     @Override
     public void failure(RetrofitError err) {
@@ -38,13 +40,14 @@ MyRestService.getInstance().login(new loginReqBody("username","password"), new C
     }
 });
 ```
+
 那么很显然UI层的业务逻辑代码和Retrofit的代码紧紧耦合在了一起，剪不断，理还乱. 如果哪天项目不再爱Retrofit了，想要更换网络请求框架，不再使用Retrofit，那么所有的调用网络接口的UI层代码都要一番改动，这样代码维护成本高，而且极易引入bug.
 
 我们要做的是将业务逻辑和网络请求两层做分离，解耦.
 
 - **最初的尝试**：
 定义一个`ResponseHandler`抽象类，实现`Callback<T>`接口, 在UI层调用时传入`ResponseHandler`类的实例，这样UI层代码不再直接依赖Retrofit的代码，改为依赖`ResponseHandler`类. `ResponseHandler`类的实现大致如下：
-```Java
+```java
 public abstract class ResponseHandler implements Callback<BaseResp > {
 
     @Override
@@ -75,7 +78,7 @@ public abstract class ResponseHandler implements Callback<BaseResp > {
 ### Retrofit + EventBus
 **一**，
 首先要有一个全局的EventBus单例实例，可以放在`Application`里，也可以如下:
-```Java
+```java
     public class EventBusProvider {
         private static final EventBus mEventBus;
         static {
@@ -94,7 +97,7 @@ public abstract class ResponseHandler implements Callback<BaseResp > {
 在`onDestroy()`里解注册`EventBusProvider.getEventBus().unregister(this);`
 
 `BaseActivity`类：
-```Java
+```java
 public class BaseActivity extends Activity {
 
 	@Override
@@ -130,7 +133,7 @@ public class BaseActivity extends Activity {
 **NOTE: ** `BaseFragment`与`BaseActivity`类似.
 
 `NwEvent`是网络事件类：
-```
+```java
 public class NwEvent {
 
 	public NwEventType type = null;
@@ -152,7 +155,7 @@ public class NwEvent {
 ```
 
 `NwEventType`是事件类型类，`mainType`表示是哪个类发出的请求的响应事件，`subType`用于区分一个类发出的多个请求：
-```
+```java
 public class NwEventType {
 	public Type mainType = null;
 	public int subType = -1;
@@ -178,7 +181,7 @@ public class NwEventType {
 
 **三**，
 另写一个ResponseHandler类，处理网络响应回调，并post事件，简要如下：
-```
+```java
 class ResponseHandler implements Callback<BaseResp> {
     private NwEventType eventType = null;
 
@@ -206,13 +209,13 @@ class ResponseHandler implements Callback<BaseResp> {
 
 **四**，
 接口声明还是一样：
-```
+```java
 @Headers("Content-Type: application/json;charset=UTF-8")
 @POST("/api/appLogin")
 void login(@Body LoginReq loginReqBody, Callback<LoginResp> cb);
 ```
 然后在`MyRestService`里对外的接口改为传入一个事件类型`NwEventType`即可，以为`NwEventType`中的`mainType`和`subType`已经能够确定是哪个类发出的哪个请求：
-```
+```java
 public void login(String username, String password, NwEventType eventType) {
 	mApiService.login(new LoginReq(username, password), new ResponseHandler(eventType));
 }
@@ -220,7 +223,7 @@ public void login(String username, String password, NwEventType eventType) {
 
 **五**，
 UI层的调用. 比如在一个`Activity`里调用接口：
-```
+```java
 class MyExampleActivity extends BaseActivity {
 
     private static final int NW_EVENT_SUB_TYPE_LOGIN = 1;
