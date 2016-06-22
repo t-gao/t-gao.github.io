@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Retrofit + EventBusµÄÒ»µã×Ü½á"
+title: "Retrofit + EventBusçš„ä¸€ç‚¹æ€»ç»“"
 date: 2016-06-22 23:42:06 +0800
 comments: true
 tags: Android
@@ -9,22 +9,22 @@ comments: true
 toc: true
 ---
 
-ËµÆğAndroidÓ¦ÓÃ¿ª·¢µÄÍøÂçÇëÇó¿ò¼Ü£¬×îÁ÷ĞĞÒ²×îÓÅĞãµÄÁ½¸ö£¬Ò»¸öÊÇVolley£¬ÁíÒ»¸öÊÇRetrofit. ½ñÌìÀ´ÁÄÁÄÎÒÔÚÏîÄ¿ÖĞ¶ÔRetrofitµÄÓ¦ÓÃÊµ¼ù.
-### Retrofit½éÉÜ
-RetrofitÊÇÃ÷ĞÇ³ÌĞòÔ±¡¢ÄĞÉñ[Jake Wharton](JakeWharton)ËùÔÚµÄ[Square](https://github.com/square)¹«Ë¾¿ªÔ´µÄÒ»¸öRESTfulÍøÂçÇëÇó¿ò¼Ü£¬ Ä¿Ç°×îĞÂ°æÊÇ2.1.0£¬µ«ÊÇ**±¾ÎÄ»ùÓÚRetrofit 1.9.x**£¬2.x °æ±¾Ïà¶ÔÓÚ1.x ÓĞ·Ç³£´óµÄ¸üĞÂ£¬ÒÔºóÓĞ»ú»áÔÙÑĞ¾¿Ò»ÏÂ2.x°æ±¾. ±¾ÎÄ²»Éæ¼°RetrofitµÄÈëÃÅ½éÉÜ£¬²»ÁË½âµÄÇ×ÃÇ¿ÉÒÔ²é¿´[ÎÄµµ](http://square.github.io/retrofit/)ºÍ[GithubÏîÄ¿Ö÷Ò³](https://github.com/square/retrofit)£¬ ÍøÂçÉÏÒ²ÓĞ´óÁ¿µÄÈëÃÅ½éÉÜÎÄÕÂ. ±¾ÎÄÖ÷Òª½²½²ÎÒÔÚÊµ¼ÊÏîÄ¿ÖĞ¶ÔRetrofitºÍEventBus½áºÏÊ¹ÓÃµÄ×Ü½á¡£
-### EventBus½éÉÜ
-EventBusÊÇÒ»¸öAndroidÆ½Ì¨µÄÊÂ¼ş×ÜÏß¿ò¼Ü£¬Ê¹ÓÃ¼òµ¥¡¢ÇáÁ¿¡¢µÍ¿ªÏú£¬¿ÉÒÔÓÃÓÚ´úÂëµÄ½âñî. »ù±¾½éÉÜºÍÓÃ·¨¼û[ÏîÄ¿Ö÷Ò³](https://github.com/greenrobot/EventBus). 
-### ÎªÊ²Ã´Ê¹ÓÃEventBus
-´ó¼ÒÖªµÀRetrofitÖĞÉùÃ÷Ò»¸öAPI½Ó¿ÚµÄ·½Ê½ÈçÏÂ£º
-ÎÒÃÇ¶¨ÒåÒ»¸öinterface ½Ğ×ö `MyRetrofitService`£¨ÎÒÖªµÀ`MyXxx`ÕâÑùµÄÃüÃûÓĞµãÍÁ, µ«ÊÇ×÷ÎªÊ¾Àı, ¹ÛÖÚÅóÓÑÃÇÈÌÄÍÒ»ÏÂ°É-_- £©, ÀïÃæÉùÃ÷Ò»¸öµÇÂ¼·½·¨£º
+è¯´èµ·Androidåº”ç”¨å¼€å‘çš„ç½‘ç»œè¯·æ±‚æ¡†æ¶ï¼Œæœ€æµè¡Œä¹Ÿæœ€ä¼˜ç§€çš„ä¸¤ä¸ªï¼Œä¸€ä¸ªæ˜¯Volleyï¼Œå¦ä¸€ä¸ªæ˜¯Retrofit. ä»Šå¤©æ¥èŠèŠæˆ‘åœ¨é¡¹ç›®ä¸­å¯¹Retrofitçš„åº”ç”¨å®è·µ.
+### Retrofitä»‹ç»
+Retrofitæ˜¯æ˜æ˜Ÿç¨‹åºå‘˜ã€ç”·ç¥[Jake Wharton](JakeWharton)æ‰€åœ¨çš„[Square](https://github.com/square)å…¬å¸å¼€æºçš„ä¸€ä¸ªRESTfulç½‘ç»œè¯·æ±‚æ¡†æ¶ï¼Œ ç›®å‰æœ€æ–°ç‰ˆæ˜¯2.1.0ï¼Œä½†æ˜¯**æœ¬æ–‡åŸºäºRetrofit 1.9.x**ï¼Œ2.x ç‰ˆæœ¬ç›¸å¯¹äº1.x æœ‰éå¸¸å¤§çš„æ›´æ–°ï¼Œä»¥åæœ‰æœºä¼šå†ç ”ç©¶ä¸€ä¸‹2.xç‰ˆæœ¬. æœ¬æ–‡ä¸æ¶‰åŠRetrofitçš„å…¥é—¨ä»‹ç»ï¼Œä¸äº†è§£çš„äº²ä»¬å¯ä»¥æŸ¥çœ‹[æ–‡æ¡£](http://square.github.io/retrofit/)å’Œ[Githubé¡¹ç›®ä¸»é¡µ](https://github.com/square/retrofit)ï¼Œ ç½‘ç»œä¸Šä¹Ÿæœ‰å¤§é‡çš„å…¥é—¨ä»‹ç»æ–‡ç« . æœ¬æ–‡ä¸»è¦è®²è®²æˆ‘åœ¨å®é™…é¡¹ç›®ä¸­å¯¹Retrofitå’ŒEventBusç»“åˆä½¿ç”¨çš„æ€»ç»“ã€‚
+### EventBusä»‹ç»
+EventBusæ˜¯ä¸€ä¸ªAndroidå¹³å°çš„äº‹ä»¶æ€»çº¿æ¡†æ¶ï¼Œä½¿ç”¨ç®€å•ã€è½»é‡ã€ä½å¼€é”€ï¼Œå¯ä»¥ç”¨äºä»£ç çš„è§£è€¦. åŸºæœ¬ä»‹ç»å’Œç”¨æ³•è§[é¡¹ç›®ä¸»é¡µ](https://github.com/greenrobot/EventBus). 
+### ä¸ºä»€ä¹ˆä½¿ç”¨EventBus
+å¤§å®¶çŸ¥é“Retrofitä¸­å£°æ˜ä¸€ä¸ªAPIæ¥å£çš„æ–¹å¼å¦‚ä¸‹ï¼š
+æˆ‘ä»¬å®šä¹‰ä¸€ä¸ªinterface å«åš `MyRetrofitService`ï¼ˆæˆ‘çŸ¥é“`MyXxx`è¿™æ ·çš„å‘½åæœ‰ç‚¹åœŸ, ä½†æ˜¯ä½œä¸ºç¤ºä¾‹, è§‚ä¼—æœ‹å‹ä»¬å¿è€ä¸€ä¸‹å§-_- ï¼‰, é‡Œé¢å£°æ˜ä¸€ä¸ªç™»å½•æ–¹æ³•ï¼š
 ```
 @Headers("Content-Type: application/json;charset=UTF-8")
 @POST("/api/appLogin")
 void login(@Body LoginReq loginReqBody, Callback<LoginResp> cb);
 ```
-ÆäÖĞ`Callback<LoginResp>`ÊÇÊ¹ÓÃRetrofitÌá¹©µÄ½Ó¿Ú`retrofit.Callback<T>`£¬ÓÃÓÚ½ÓÊÕÇëÇóÏìÓ¦.  `LoginResp`ÊÇ`BaseResp`µÄ×ÓÀà.
+å…¶ä¸­`Callback<LoginResp>`æ˜¯ä½¿ç”¨Retrofitæä¾›çš„æ¥å£`retrofit.Callback<T>`ï¼Œç”¨äºæ¥æ”¶è¯·æ±‚å“åº”.  `LoginResp`æ˜¯`BaseResp`çš„å­ç±».
 
-Èç¹ûÎÒÃÇÔÚUI²ã´úÂëÖĞµ÷ÓÃ½Ó¿ÚµÄÊ±ºòÊÇÀàËÆÏÂÃæµÄĞ´·¨£º
+å¦‚æœæˆ‘ä»¬åœ¨UIå±‚ä»£ç ä¸­è°ƒç”¨æ¥å£çš„æ—¶å€™æ˜¯ç±»ä¼¼ä¸‹é¢çš„å†™æ³•ï¼š
 ```Java
 MyRestService.getInstance().login(new loginReqBody("username","password"), new Callback<LoginResp> {
     @Override
@@ -34,22 +34,22 @@ MyRestService.getInstance().login(new loginReqBody("username","password"), new C
 
     @Override
     public void success(final LoginResp arg0, Response arg1) {
-        //TODO: ´¦ÀíÏìÓ¦
+        //TODO: å¤„ç†å“åº”
     }
 });
 ```
-ÄÇÃ´ºÜÏÔÈ»UI²ãµÄÒµÎñÂß¼­´úÂëºÍRetrofitµÄ´úÂë½ô½ôñîºÏÔÚÁËÒ»Æğ£¬¼ô²»¶Ï£¬Àí»¹ÂÒ. Èç¹ûÄÄÌìÏîÄ¿²»ÔÙ°®RetrofitÁË£¬ÏëÒª¸ü»»ÍøÂçÇëÇó¿ò¼Ü£¬²»ÔÙÊ¹ÓÃRetrofit£¬ÄÇÃ´ËùÓĞµÄµ÷ÓÃÍøÂç½Ó¿ÚµÄUI²ã´úÂë¶¼ÒªÒ»·¬¸Ä¶¯£¬ÕâÑù´úÂëÎ¬»¤³É±¾¸ß£¬¶øÇÒ¼«Ò×ÒıÈëbug.
+é‚£ä¹ˆå¾ˆæ˜¾ç„¶UIå±‚çš„ä¸šåŠ¡é€»è¾‘ä»£ç å’ŒRetrofitçš„ä»£ç ç´§ç´§è€¦åˆåœ¨äº†ä¸€èµ·ï¼Œå‰ªä¸æ–­ï¼Œç†è¿˜ä¹±. å¦‚æœå“ªå¤©é¡¹ç›®ä¸å†çˆ±Retrofitäº†ï¼Œæƒ³è¦æ›´æ¢ç½‘ç»œè¯·æ±‚æ¡†æ¶ï¼Œä¸å†ä½¿ç”¨Retrofitï¼Œé‚£ä¹ˆæ‰€æœ‰çš„è°ƒç”¨ç½‘ç»œæ¥å£çš„UIå±‚ä»£ç éƒ½è¦ä¸€ç•ªæ”¹åŠ¨ï¼Œè¿™æ ·ä»£ç ç»´æŠ¤æˆæœ¬é«˜ï¼Œè€Œä¸”ææ˜“å¼•å…¥bug.
 
-ÎÒÃÇÒª×öµÄÊÇ½«ÒµÎñÂß¼­ºÍÍøÂçÇëÇóÁ½²ã×ö·ÖÀë£¬½âñî.
+æˆ‘ä»¬è¦åšçš„æ˜¯å°†ä¸šåŠ¡é€»è¾‘å’Œç½‘ç»œè¯·æ±‚ä¸¤å±‚åšåˆ†ç¦»ï¼Œè§£è€¦.
 
-- **×î³õµÄ³¢ÊÔ**£º
-¶¨ÒåÒ»¸ö`ResponseHandler`³éÏóÀà£¬ÊµÏÖ`Callback<T>`½Ó¿Ú, ÔÚUI²ãµ÷ÓÃÊ±´«Èë`ResponseHandler`ÀàµÄÊµÀı£¬ÕâÑùUI²ã´úÂë²»ÔÙÖ±½ÓÒÀÀµRetrofitµÄ´úÂë£¬¸ÄÎªÒÀÀµ`ResponseHandler`Àà. `ResponseHandler`ÀàµÄÊµÏÖ´óÖÂÈçÏÂ£º
+- **æœ€åˆçš„å°è¯•**ï¼š
+å®šä¹‰ä¸€ä¸ª`ResponseHandler`æŠ½è±¡ç±»ï¼Œå®ç°`Callback<T>`æ¥å£, åœ¨UIå±‚è°ƒç”¨æ—¶ä¼ å…¥`ResponseHandler`ç±»çš„å®ä¾‹ï¼Œè¿™æ ·UIå±‚ä»£ç ä¸å†ç›´æ¥ä¾èµ–Retrofitçš„ä»£ç ï¼Œæ”¹ä¸ºä¾èµ–`ResponseHandler`ç±». `ResponseHandler`ç±»çš„å®ç°å¤§è‡´å¦‚ä¸‹ï¼š
 ```Java
 public abstract class ResponseHandler implements Callback<BaseResp > {
 
     @Override
     public void success(BaseResp resp, Response response) {
-        //TODO: Èç¹ûĞèÒªµÄ»°£¬×öÒ»Ğ©Õë¶ÔrespµÄ´¦Àí
+        //TODO: å¦‚æœéœ€è¦çš„è¯ï¼Œåšä¸€äº›é’ˆå¯¹respçš„å¤„ç†
         onSuccess(resp);
     }
 
@@ -64,17 +64,17 @@ public abstract class ResponseHandler implements Callback<BaseResp > {
     public abstract void onFailure0(int errorCode, String errorMsg);
 }
 ```
-ÕâÑùÒÑ¾­´ïµ½ÁË½âñîµÄÄ¿µÄ£¬ºÃ±ÈÄã¸úÒ»¸öÈËÍøÁÄ£¬Ã¿ÌìÁÄµÃ¿ªĞÄ¿ªĞÄ¼«ÁË£¬µ«ÊÇÄã²»ÖªµÀÄÇ±ßÊÖ»ú»òµçÄÔºó±ßÊÇ²»ÊÇÒÑ¾­»»ÁËÈËÁË£¬·´Õı¶ÔÄãÀ´ËµÌåÑéÒ»Ñù. Ïà¶ÔÓÚÖ±½ÓÃæÁÄ£¬¸ôÁËÒ»²ãÍøÂç£¬ÄãºÍTA±»ÍøÂç½âñîÁË¡£
+è¿™æ ·å·²ç»è¾¾åˆ°äº†è§£è€¦çš„ç›®çš„ï¼Œå¥½æ¯”ä½ è·Ÿä¸€ä¸ªäººç½‘èŠï¼Œæ¯å¤©èŠå¾—å¼€å¿ƒå¼€å¿ƒæäº†ï¼Œä½†æ˜¯ä½ ä¸çŸ¥é“é‚£è¾¹æ‰‹æœºæˆ–ç”µè„‘åè¾¹æ˜¯ä¸æ˜¯å·²ç»æ¢äº†äººäº†ï¼Œåæ­£å¯¹ä½ æ¥è¯´ä½“éªŒä¸€æ ·. ç›¸å¯¹äºç›´æ¥é¢èŠï¼Œéš”äº†ä¸€å±‚ç½‘ç»œï¼Œä½ å’ŒTAè¢«ç½‘ç»œè§£è€¦äº†ã€‚
 
-- **¸ü½øÒ»²½**
-¿¼ÂÇÕâÑùÒ»¸öĞèÇó£¬Èç¹ûÒ»¸öActivityÀïÓĞÁ½¸öFragment£¬×ó²àÁĞ±íFragmentAºÍÓÒ²àÏêÇéFragmentB£¬ÔÚFragmentAÖĞµã»÷Ò»¸ö°´Å¥Ê±£¬µ÷ÓÃÒ»¸ö½Ó¿Ú£¬È»ºó¸ù¾İ½Ó¿Ú·µ»Ø½á¹ûFragmentBĞèÒªÏàÓ¦µÄË¢ĞÂ½çÃæ.
+- **æ›´è¿›ä¸€æ­¥**
+è€ƒè™‘è¿™æ ·ä¸€ä¸ªéœ€æ±‚ï¼Œå¦‚æœä¸€ä¸ªActivityé‡Œæœ‰ä¸¤ä¸ªFragmentï¼Œå·¦ä¾§åˆ—è¡¨FragmentAå’Œå³ä¾§è¯¦æƒ…FragmentBï¼Œåœ¨FragmentAä¸­ç‚¹å‡»ä¸€ä¸ªæŒ‰é’®æ—¶ï¼Œè°ƒç”¨ä¸€ä¸ªæ¥å£ï¼Œç„¶åæ ¹æ®æ¥å£è¿”å›ç»“æœFragmentBéœ€è¦ç›¸åº”çš„åˆ·æ–°ç•Œé¢.
 
-    ÊµÏÖÕâ¸öĞèÇóÓĞºÜ¶à·½Ê½£¬Ê¹ÓÃÊÂ¼ş×ÜÏßÊÇ±È½ÏºÃµÄÒ»ÖÖ¡£ÊÂ¼ş×ÜÏß¿ÉÒÔ×Ô¼ºÊµÏÖ£¬Ò²¿ÉÒÔÊ¹ÓÃÒ»Ğ©ÓÅĞãµÄ¿ªÔ´¿ò¼Ü£¬±ÈÈçEventBus.
-Ò»ÖÖ·½Ê½ÊÇÔÚFragmentAÖĞ½ÓÊÕ½Ó¿Ú»Øµ÷£¬È»ºóÔÙÓÃEventBusÍ¨ÖªFragmentB. ÄÇÃ´¼ÈÈ»ÒÑ¾­ÒıÈëÁËÊÂ¼ş×ÜÏß£¬ºÎ²»°ÑÍøÂç½Ó¿ÚÇëÇóµÄÏìÓ¦ÓÃEventBusµÄÊÂ¼şĞÎÊ½·¢³öÀ´£¬ÕâÑù´úÂë¿´ÆğÀ´¸üÇå³şÃÀ¹ÛĞ©£¬½ÓÏÂÀ´ÊÇÕâÖÖ·½Ê½µÄÊµ¼ù×Ü½á.
+    å®ç°è¿™ä¸ªéœ€æ±‚æœ‰å¾ˆå¤šæ–¹å¼ï¼Œä½¿ç”¨äº‹ä»¶æ€»çº¿æ˜¯æ¯”è¾ƒå¥½çš„ä¸€ç§ã€‚äº‹ä»¶æ€»çº¿å¯ä»¥è‡ªå·±å®ç°ï¼Œä¹Ÿå¯ä»¥ä½¿ç”¨ä¸€äº›ä¼˜ç§€çš„å¼€æºæ¡†æ¶ï¼Œæ¯”å¦‚EventBus.
+ä¸€ç§æ–¹å¼æ˜¯åœ¨FragmentAä¸­æ¥æ”¶æ¥å£å›è°ƒï¼Œç„¶åå†ç”¨EventBusé€šçŸ¥FragmentB. é‚£ä¹ˆæ—¢ç„¶å·²ç»å¼•å…¥äº†äº‹ä»¶æ€»çº¿ï¼Œä½•ä¸æŠŠç½‘ç»œæ¥å£è¯·æ±‚çš„å“åº”ç”¨EventBusçš„äº‹ä»¶å½¢å¼å‘å‡ºæ¥ï¼Œè¿™æ ·ä»£ç çœ‹èµ·æ¥æ›´æ¸…æ¥šç¾è§‚äº›ï¼Œæ¥ä¸‹æ¥æ˜¯è¿™ç§æ–¹å¼çš„å®è·µæ€»ç»“.
 
 ### Retrofit + EventBus
-**Ò»**£¬
-Ê×ÏÈÒªÓĞÒ»¸öÈ«¾ÖµÄEventBusµ¥ÀıÊµÀı£¬¿ÉÒÔ·ÅÔÚ`Application`Àï£¬Ò²¿ÉÒÔÈçÏÂ:
+**ä¸€**ï¼Œ
+é¦–å…ˆè¦æœ‰ä¸€ä¸ªå…¨å±€çš„EventBuså•ä¾‹å®ä¾‹ï¼Œå¯ä»¥æ”¾åœ¨`Application`é‡Œï¼Œä¹Ÿå¯ä»¥å¦‚ä¸‹:
 ```Java
     public class EventBusProvider {
         private static final EventBus mEventBus;
@@ -87,13 +87,13 @@ public abstract class ResponseHandler implements Callback<BaseResp > {
         }
 }
 ```
-**¶ş**£¬
-ËùÓĞĞèÒª´¦ÀíÍøÂçÇëÇóµÄActivity¶¼¼Ì³Ğ×ÔÒ»¸ö`BaseActivity`£¬ÔÚ`BaseActivity`Àï¼ÓÒ»¸ö`onEvent()`·½·¨£¬ÒòÎª`onEvent()`·½·¨ÊÇEventBusµÄ¼àÌıÕßÀà±ØĞëÓĞµÄÒ»¸ö·½·¨£¬ÕâÑù±ÜÃâËùÓĞµÄactivity¶¼È¥Ğ´`onEvent()`·½·¨.
+**äºŒ**ï¼Œ
+æ‰€æœ‰éœ€è¦å¤„ç†ç½‘ç»œè¯·æ±‚çš„Activityéƒ½ç»§æ‰¿è‡ªä¸€ä¸ª`BaseActivity`ï¼Œåœ¨`BaseActivity`é‡ŒåŠ ä¸€ä¸ª`onEvent()`æ–¹æ³•ï¼Œå› ä¸º`onEvent()`æ–¹æ³•æ˜¯EventBusçš„ç›‘å¬è€…ç±»å¿…é¡»æœ‰çš„ä¸€ä¸ªæ–¹æ³•ï¼Œè¿™æ ·é¿å…æ‰€æœ‰çš„activityéƒ½å»å†™`onEvent()`æ–¹æ³•.
 
-ÔÚ`BaseActivity`µÄ`onCreate()`·½·¨Àï×¢²á¼àÌı`EventBusProvider.getEventBus().register(this);`
-ÔÚ`onDestroy()`Àï½â×¢²á`EventBusProvider.getEventBus().unregister(this);`
+åœ¨`BaseActivity`çš„`onCreate()`æ–¹æ³•é‡Œæ³¨å†Œç›‘å¬`EventBusProvider.getEventBus().register(this);`
+åœ¨`onDestroy()`é‡Œè§£æ³¨å†Œ`EventBusProvider.getEventBus().unregister(this);`
 
-`BaseActivity`Àà£º
+`BaseActivity`ç±»ï¼š
 ```Java
 public class BaseActivity extends Activity {
 
@@ -115,21 +115,21 @@ public class BaseActivity extends Activity {
         }
     }
 
-	//Õâ¸ö·½·¨ÊÇfinalµÄ£¬ÒòÎª×ÓÀà²»ĞèÒª¸²¸ÇÕâ¸ö·½·¨£¬Õâ¸ö·½·¨»á·µ»Øµ±Ç°×ÓÀàµÄÀàĞÍ
+	//è¿™ä¸ªæ–¹æ³•æ˜¯finalçš„ï¼Œå› ä¸ºå­ç±»ä¸éœ€è¦è¦†ç›–è¿™ä¸ªæ–¹æ³•ï¼Œè¿™ä¸ªæ–¹æ³•ä¼šè¿”å›å½“å‰å­ç±»çš„ç±»å‹
     protected final Type getNwEventMainType() {
         return this.getClass();
     }
 
     /**
-     * NOTE: ĞèÒª´¦ÀíÍøÂçÇëÇóÏìÓ¦µÄ×ÓÀà£¬Òª¸²¸ÇÕâ¸ö·½·¨À´´¦ÀíÏìÓ¦
+     * NOTE: éœ€è¦å¤„ç†ç½‘ç»œè¯·æ±‚å“åº”çš„å­ç±»ï¼Œè¦è¦†ç›–è¿™ä¸ªæ–¹æ³•æ¥å¤„ç†å“åº”
      */
     protected void handleNwEvent(NwEvent event) {
     }
 }
 ```
-**NOTE: ** `BaseFragment`Óë`BaseActivity`ÀàËÆ.
+**NOTE: ** `BaseFragment`ä¸`BaseActivity`ç±»ä¼¼.
 
-`NwEvent`ÊÇÍøÂçÊÂ¼şÀà£º
+`NwEvent`æ˜¯ç½‘ç»œäº‹ä»¶ç±»ï¼š
 ```
 public class NwEvent {
 
@@ -151,7 +151,7 @@ public class NwEvent {
 }
 ```
 
-`NwEventType`ÊÇÊÂ¼şÀàĞÍÀà£¬`mainType`±íÊ¾ÊÇÄÄ¸öÀà·¢³öµÄÇëÇóµÄÏìÓ¦ÊÂ¼ş£¬`subType`ÓÃÓÚÇø·ÖÒ»¸öÀà·¢³öµÄ¶à¸öÇëÇó£º
+`NwEventType`æ˜¯äº‹ä»¶ç±»å‹ç±»ï¼Œ`mainType`è¡¨ç¤ºæ˜¯å“ªä¸ªç±»å‘å‡ºçš„è¯·æ±‚çš„å“åº”äº‹ä»¶ï¼Œ`subType`ç”¨äºåŒºåˆ†ä¸€ä¸ªç±»å‘å‡ºçš„å¤šä¸ªè¯·æ±‚ï¼š
 ```
 public class NwEventType {
 	public Type mainType = null;
@@ -176,8 +176,8 @@ public class NwEventType {
 }
 ```
 
-**Èı**£¬
-ÁíĞ´Ò»¸öResponseHandlerÀà£¬´¦ÀíÍøÂçÏìÓ¦»Øµ÷£¬²¢postÊÂ¼ş£¬¼òÒªÈçÏÂ£º
+**ä¸‰**ï¼Œ
+å¦å†™ä¸€ä¸ªResponseHandlerç±»ï¼Œå¤„ç†ç½‘ç»œå“åº”å›è°ƒï¼Œå¹¶postäº‹ä»¶ï¼Œç®€è¦å¦‚ä¸‹ï¼š
 ```
 class ResponseHandler implements Callback<BaseResp> {
     private NwEventType eventType = null;
@@ -188,38 +188,38 @@ class ResponseHandler implements Callback<BaseResp> {
 	
 	@Override
 	public void success(BaseResp resp, Response response) {
-		//TODO: Ò»Ğ©Õë¶ÔrespµÄÅĞ¶Ï¡¢´¦Àí
-		ErrorType errorType = ErrorType.OK;//TOOD: ¸ù¾İÄãµÄÂß¼­.
-		boolean result = resp != null;//»ò¸ü¾ßÌåµÄÅĞ¶Ï
+		//TODO: ä¸€äº›é’ˆå¯¹respçš„åˆ¤æ–­ã€å¤„ç†
+		ErrorType errorType = ErrorType.OK;//TOOD: æ ¹æ®ä½ çš„é€»è¾‘.
+		boolean result = resp != null;//æˆ–æ›´å…·ä½“çš„åˆ¤æ–­
 		
-		//È»ºó·¢³öEvent, ÔÚ¾ßÌåµ÷ÓÃ½Ó¿ÚµÄActivity»òFragment¾ÍÄÜÊÕµ½onEvent()»Øµ÷ÁË
+		//ç„¶åå‘å‡ºEvent, åœ¨å…·ä½“è°ƒç”¨æ¥å£çš„Activityæˆ–Fragmentå°±èƒ½æ”¶åˆ°onEvent()å›è°ƒäº†
 		EventBusProvider.getEventBus().post(new NwEvent(eventType, result, resp, errorType));
 	}
 	
 	@Override
 	public void failure(RetrofitError error) {
-	    //TODO: Ò»Ğ©Õë¶ÔerrorµÄÅĞ¶Ï¡¢´¦Àí
+	    //TODO: ä¸€äº›é’ˆå¯¹errorçš„åˆ¤æ–­ã€å¤„ç†
 		EventBusProvider.getEventBus().post(new NwEvent(eventType, false, null, errorType));
 	}
 }
 ```
 
-**ËÄ**£¬
-½Ó¿ÚÉùÃ÷»¹ÊÇÒ»Ñù£º
+**å››**ï¼Œ
+æ¥å£å£°æ˜è¿˜æ˜¯ä¸€æ ·ï¼š
 ```
 @Headers("Content-Type: application/json;charset=UTF-8")
 @POST("/api/appLogin")
 void login(@Body LoginReq loginReqBody, Callback<LoginResp> cb);
 ```
-È»ºóÔÚ`MyRestService`Àï¶ÔÍâµÄ½Ó¿Ú¸ÄÎª´«ÈëÒ»¸öÊÂ¼şÀàĞÍ`NwEventType`¼´¿É£¬ÒÔÎª`NwEventType`ÖĞµÄ`mainType`ºÍ`subType`ÒÑ¾­ÄÜ¹»È·¶¨ÊÇÄÄ¸öÀà·¢³öµÄÄÄ¸öÇëÇó£º
+ç„¶ååœ¨`MyRestService`é‡Œå¯¹å¤–çš„æ¥å£æ”¹ä¸ºä¼ å…¥ä¸€ä¸ªäº‹ä»¶ç±»å‹`NwEventType`å³å¯ï¼Œä»¥ä¸º`NwEventType`ä¸­çš„`mainType`å’Œ`subType`å·²ç»èƒ½å¤Ÿç¡®å®šæ˜¯å“ªä¸ªç±»å‘å‡ºçš„å“ªä¸ªè¯·æ±‚ï¼š
 ```
 public void login(String username, String password, NwEventType eventType) {
 	mApiService.login(new LoginReq(username, password), new ResponseHandler(eventType));
 }
 ```
 
-**Îå**£¬
-UI²ãµÄµ÷ÓÃ. ±ÈÈçÔÚÒ»¸ö`Activity`Àïµ÷ÓÃ½Ó¿Ú£º
+**äº”**ï¼Œ
+UIå±‚çš„è°ƒç”¨. æ¯”å¦‚åœ¨ä¸€ä¸ª`Activity`é‡Œè°ƒç”¨æ¥å£ï¼š
 ```
 class MyExampleActivity extends BaseActivity {
 
@@ -257,9 +257,9 @@ class MyExampleActivity extends BaseActivity {
 	...
 	
 	private void handleLoginResp(NwEvent event) {
-		//TODO ´¦ÀíµÇÂ¼ÏìÓ¦
+		//TODO å¤„ç†ç™»å½•å“åº”
 		
-		//Èç¹ûµÇÂ¼³É¹¦£¬¶øÇÒÓĞĞèÒª£¬µ÷ÓÃ»ñÈ¡ÓÃ»§ĞÅÏ¢½Ó¿Ú
+		//å¦‚æœç™»å½•æˆåŠŸï¼Œè€Œä¸”æœ‰éœ€è¦ï¼Œè°ƒç”¨è·å–ç”¨æˆ·ä¿¡æ¯æ¥å£
 		MyRestService.getInstance().getUserInfo(new NwEventType(getNwEventMainType(), NW_EVENT_SUB_TYPE_GET_USER_INFO));
 	}
 	
@@ -267,7 +267,7 @@ class MyExampleActivity extends BaseActivity {
 }
 ```
 
-### ×Ü½á
-ÒÔÉÏ·½Ê½»ù±¾ÊµÏÖÁËÍøÂç²ãºÍUI¡¢ÒµÎñÂß¼­²ãµÄ½âñî. µ«ÊÇ¶ÔÓÚEventBusµÄÊ¹ÓÃ²¢²»ÏŞÓÚÈç´Ë£¬±ÈÈçNwEventTypeµÄÊµÏÖ¾Í¿ÉÒÔ¸ÄÎªÓÃAPI½Ó¿ÚµÄ±àºÅÀ´ÊµÏÖ£¬ÕâÑùÒ»¸öÀà·¢³öµÄÇëÇó¾Í²»±»¾ĞÄàÓÚÒ»¶¨Òª×Ô¼ºÕâ¸öÀàÀ´¼àÌı´¦Àí£¬Ò²¾Í¿ÉÒÔÖ±½ÓÊµÏÖÎÒÃÇÔÚ**"¸ü½øÒ»²½"**Ğ¡½ÚÖĞÌáµ½µÄĞèÇó. µÈµÈ.
+### æ€»ç»“
+ä»¥ä¸Šæ–¹å¼åŸºæœ¬å®ç°äº†ç½‘ç»œå±‚å’ŒUIã€ä¸šåŠ¡é€»è¾‘å±‚çš„è§£è€¦. ä½†æ˜¯å¯¹äºEventBusçš„ä½¿ç”¨å¹¶ä¸é™äºå¦‚æ­¤ï¼Œæ¯”å¦‚NwEventTypeçš„å®ç°å°±å¯ä»¥æ”¹ä¸ºç”¨APIæ¥å£çš„ç¼–å·æ¥å®ç°ï¼Œè¿™æ ·ä¸€ä¸ªç±»å‘å‡ºçš„è¯·æ±‚å°±ä¸è¢«æ‹˜æ³¥äºä¸€å®šè¦è‡ªå·±è¿™ä¸ªç±»æ¥ç›‘å¬å¤„ç†ï¼Œä¹Ÿå°±å¯ä»¥ç›´æ¥å®ç°æˆ‘ä»¬åœ¨**"æ›´è¿›ä¸€æ­¥"**å°èŠ‚ä¸­æåˆ°çš„éœ€æ±‚. ç­‰ç­‰.
 
-Ï×»¨ÅÄ×©ÇëËæÒâ-_-.
+çŒ®èŠ±æ‹ç –è¯·éšæ„-_-.
