@@ -27,6 +27,7 @@ void login(@Body LoginReq loginReqBody, Callback<LoginResp> cb);
 其中`Callback<LoginResp>`是使用Retrofit提供的接口`retrofit.Callback<T>`，用于接收请求响应.  `LoginResp`是`BaseResp`的子类.
 
 如果我们在UI层代码中调用接口的时候是类似下面的写法：
+
 ```java
 MyRestService.getInstance().login(new loginReqBody("username","password"), new Callback<LoginResp> {
     @Override
@@ -47,6 +48,7 @@ MyRestService.getInstance().login(new loginReqBody("username","password"), new C
 
 - **最初的尝试**：
 定义一个`ResponseHandler`抽象类，实现`Callback<T>`接口, 在UI层调用时传入`ResponseHandler`类的实例，这样UI层代码不再直接依赖Retrofit的代码，改为依赖`ResponseHandler`类. `ResponseHandler`类的实现大致如下：
+
 ```java
 public abstract class ResponseHandler implements Callback<BaseResp > {
 
@@ -67,6 +69,7 @@ public abstract class ResponseHandler implements Callback<BaseResp > {
     public abstract void onFailure0(int errorCode, String errorMsg);
 }
 ```
+
 这样已经达到了解耦的目的，好比你跟一个人网聊，每天聊得开心开心极了，但是你不知道那边手机或电脑后边是不是已经换了人了，反正对你来说体验一样. 相对于直接面聊，隔了一层网络，你和TA被网络解耦了。
 
 - **更进一步**
@@ -78,6 +81,7 @@ public abstract class ResponseHandler implements Callback<BaseResp > {
 ### Retrofit + EventBus
 **一**，
 首先要有一个全局的EventBus单例实例，可以放在`Application`里，也可以如下:
+
 ```java
     public class EventBusProvider {
         private static final EventBus mEventBus;
@@ -90,6 +94,7 @@ public abstract class ResponseHandler implements Callback<BaseResp > {
         }
 }
 ```
+
 **二**，
 所有需要处理网络请求的Activity都继承自一个`BaseActivity`，在`BaseActivity`里加一个`onEvent()`方法，因为`onEvent()`方法是EventBus的监听者类必须有的一个方法，这样避免所有的activity都去写`onEvent()`方法.
 
@@ -97,6 +102,7 @@ public abstract class ResponseHandler implements Callback<BaseResp > {
 在`onDestroy()`里解注册`EventBusProvider.getEventBus().unregister(this);`
 
 `BaseActivity`类：
+
 ```java
 public class BaseActivity extends Activity {
 
@@ -130,9 +136,11 @@ public class BaseActivity extends Activity {
     }
 }
 ```
+
 **NOTE: ** `BaseFragment`与`BaseActivity`类似.
 
 `NwEvent`是网络事件类：
+
 ```java
 public class NwEvent {
 
@@ -155,6 +163,7 @@ public class NwEvent {
 ```
 
 `NwEventType`是事件类型类，`mainType`表示是哪个类发出的请求的响应事件，`subType`用于区分一个类发出的多个请求：
+
 ```java
 public class NwEventType {
 	public Type mainType = null;
@@ -181,6 +190,7 @@ public class NwEventType {
 
 **三**，
 另写一个ResponseHandler类，处理网络响应回调，并post事件，简要如下：
+
 ```java
 class ResponseHandler implements Callback<BaseResp> {
     private NwEventType eventType = null;
@@ -209,12 +219,15 @@ class ResponseHandler implements Callback<BaseResp> {
 
 **四**，
 接口声明还是一样：
+
 ```java
 @Headers("Content-Type: application/json;charset=UTF-8")
 @POST("/api/appLogin")
 void login(@Body LoginReq loginReqBody, Callback<LoginResp> cb);
 ```
+
 然后在`MyRestService`里对外的接口改为传入一个事件类型`NwEventType`即可，以为`NwEventType`中的`mainType`和`subType`已经能够确定是哪个类发出的哪个请求：
+
 ```java
 public void login(String username, String password, NwEventType eventType) {
 	mApiService.login(new LoginReq(username, password), new ResponseHandler(eventType));
@@ -223,6 +236,7 @@ public void login(String username, String password, NwEventType eventType) {
 
 **五**，
 UI层的调用. 比如在一个`Activity`里调用接口：
+
 ```java
 class MyExampleActivity extends BaseActivity {
 
