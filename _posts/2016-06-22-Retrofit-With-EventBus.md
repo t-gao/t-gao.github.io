@@ -3,17 +3,20 @@ layout: post
 title: "Retrofit + EventBus的一点总结"
 date: 2016-06-22 23:42:06 +0800
 comments: true
-tags: Android
-description: Retrofit + EventBus
+tags: [Android, Retrofit]
+description: 使用Retrofit + EventBus对网络层和业务层的解耦的应用实践介绍
 comments: true
 toc: true
 ---
 
 说起Android应用开发的网络请求框架，最流行也最优秀的两个，一个是Volley，另一个是Retrofit. 今天来聊聊我在项目中对Retrofit的应用实践.
+
 ### Retrofit介绍
 Retrofit是明星程序员、男神[Jake Wharton](JakeWharton)所在的[Square](https://github.com/square)公司开源的一个RESTful网络请求框架， 目前最新版是2.1.0，但是**本文基于Retrofit 1.9.x**，2.x 版本相对于1.x 有非常大的更新，以后有机会再研究一下2.x版本. 本文不涉及Retrofit的入门介绍，不了解的亲们可以查看[文档](http://square.github.io/retrofit/)和[Github项目主页](https://github.com/square/retrofit)， 网络上也有大量的入门介绍文章. 本文主要讲讲我在实际项目中对Retrofit和EventBus结合使用的总结。
+
 ### EventBus介绍
 EventBus是一个Android平台的事件总线框架，使用简单、轻量、低开销，可以用于代码的解耦. 基本介绍和用法见[项目主页](https://github.com/greenrobot/EventBus). 
+
 ### 为什么使用EventBus
 大家知道Retrofit中声明一个API接口的方式如下：
 我们定义一个interface 叫做 `MyRetrofitService`（我知道`MyXxx`这样的命名有点土, 但是作为示例, 观众朋友们忍耐一下吧-_- ）, 里面声明一个登录方法：
