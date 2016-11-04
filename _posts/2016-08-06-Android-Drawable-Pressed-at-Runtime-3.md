@@ -4,7 +4,7 @@ title: "Android Drawable Pressed at Runtime - part 3"
 date: 2016-08-10 16:34:06 +0800
 comments: true
 tags: [Android]
-description: Android Drawable / DrawableCompat # setTintList( ) 使用时一个值得注意的问题
+description: Android Drawable/DrawableCompat.setTintList()使用时一个值得注意的问题
 comments: true
 toc: true
 ---
