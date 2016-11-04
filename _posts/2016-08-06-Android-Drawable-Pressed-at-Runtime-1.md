@@ -28,16 +28,16 @@ toc: true
 
 我们APP的主页面顶部类似美团外卖，是几排不固定数量的图标，表示应用的各个功能入口。第一版时，产品的需求和UI设计出来后，确定这些图标一定圆形图标，而且近几版内不会变为其他形状。那么一个图标的normal状态和pressed状态大概如下图所示，按下时稍有变暗。下面以微信的图标为例。
 
-![round_normal.png](../imgs/wx_normal_round.png)
+![round_normal.png](http://upload-images.jianshu.io/upload_images/71249-4ddddc9819d804d3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
 ![round_pressed.png](http://upload-images.jianshu.io/upload_images/71249-53db3ba25fe22b0d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-这时，完成这个需求就有两种思路：
+这时，完成这个需求就有三种思路：
 1. 两种状态的图都从服务器获取
 normal和pressed两张图都从服务器动态获取，然后在客户端拼成一个 ```StateListDrawable``` 。 
 
-2. 只从服务器获取normal状态的图，有客户端动态生成pressed状态的图，然后拼成一个 ```StateListDrawable``` 。
+2. 只从服务器取normal状态的图，客户端动态生成pressed状态的图，然后拼成一个 ```StateListDrawable```。
 
 3. 热更新，动态加载资源包。
 
