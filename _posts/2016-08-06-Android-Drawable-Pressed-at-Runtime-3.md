@@ -37,7 +37,7 @@ DrawableCompat.setTintList(finalDrawable, colorStateList);
 DrawableCompat.setTintMode(finalDrawable, PorterDuff.Mode.SRC_ATOP);
 ```
 
-#### 问题所在
+### 问题所在
 
 这段代码跑在API 21 及以上的设备上时，在按下按钮后并没有着色效果。
 

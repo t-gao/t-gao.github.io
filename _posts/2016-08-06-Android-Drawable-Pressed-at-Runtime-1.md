@@ -125,7 +125,7 @@ Bitmap pressedMask = BitmapFactory.decodeResource(context.getResources(), R.draw
 
 ### 二、不定形状图标
  
-##### 1. 需求思考
+#### 1. 需求思考
 新设计稿一出来，一看，原来乖乖的排排坐吃果果的圆圆的图标们不见了，满屏都换成了各有各形状的图标。也不用含泪去质问设计师是否还记得当初执手许下的约定了，还是想想怎么改代码吧。
 
 虽然图标不是确定的形状了（例如下面的图 icon_random_normal.png），按下效果还是一样，还是稍稍变暗的效果。但是上面的方法就不行了，如果不改，就会变成一个不规则形状的按钮按下之后上面蒙了一层圆形的灰色半透明蒙层，应该会很难看。我们需要根据图标的形状，对应地动态生成一个一样形状的蒙层，然后再套用上面的方法，就可以达到效果。就是说，如果按钮A是三角形的，那么就要生成一个三角形的蒙层，然后叠加生成一个pressed状态的图；如果按钮B是任何不规则形状，同理。
@@ -135,7 +135,7 @@ Bitmap pressedMask = BitmapFactory.decodeResource(context.getResources(), R.draw
 
 这时候是不是想，如果能把round_press_mask.png 裁剪成需要的形状就好了（需要保证 round_press_mask.png 尺寸足够大）。
 
-##### 2. PorterDuff.Mode
+#### 2. PorterDuff.Mode
 说到这，应该忽然想起来 **PorterDuff** 这个东西了。PorterDuff这个单词查词典基本查不到，其实是关于图像处理的一篇论文的两个作者Thomas Porter 和 Tom Duff 的名字的合成词。定义了一系列处理图像的方式，感兴趣可以查看[这篇文章](http://ssp.impulsetrain.com/porterduff.html)，当然，如果对学术有兴趣的话，也可以看[原论文](http://keithp.com/~keithp/porterduff/p253-porter.pdf) （在下是不敢看的 -_-）。安卓中源码：
 
 ```java

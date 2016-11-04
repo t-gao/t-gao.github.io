@@ -13,10 +13,11 @@ toc: true
 
 上一篇文章中，关于不规则形状图片按钮在运行时设置pressed状态的问题，提出了一种思路：用 `PorterDuff.Mode` 的 `SRC_IN` 模式裁剪一张半透明灰度蒙层图来生成与按钮的normal状态图形状一致的蒙层，然后，再叠加两张图生成pressed状态下的图，最后组合成 `StateListDrawable` 来解决 pressed state 的问题。
 
-文章发出后，有评论提示说这种方式“曲线救国”，并提示了可以用着色的方式来简单实现需求，具体可以见他的评论。其实道理很简单，就是用ColorFilter对图片进行着色，产生pressed的效果。但是着色的方式，相对于 `StateListDrawable` （或selector）的方式，需要自己监听touch事件并判断动作类型来进行着色操作。感谢评论的提示，我具体实现了一下，把实现中遇到的着色时机的细节问题，在这篇文章中记录一下。
+文章发出后，有评论提示说这种方式“曲线救国”，并提示了可以用着色的方式来简单实现需求，具体可以见他的评论。其实道理很简单，就是用 `ColorFilter` 对图片进行着色，产生pressed的效果。但是着色的方式，相对于 `StateListDrawable` （或selector）的方式，需要自己监听touch事件并判断动作类型来进行着色操作。感谢评论的提示，我具体实现了一下，把实现中遇到的着色时机的细节问题，在这篇文章中记录一下。
 
-#### 什么时候显示pressed状态？
-由于我们的页面是一个可以滑动并且可以下拉刷新的页面，因此，其页面上的按钮在处理touch事件时就需要考虑区分点击事件和滑动事件。具体到这里说的按钮的点击状态的问题，我们给按钮设置了 `OnTouchListener` ，肯定不能在收到ACTION_DOWN事件后立刻就设置着色（即设置为pressed状态），因为此时用户手刚接触屏幕，接下来可能是短点击，也可能是滑动，所以需要有一个延时来判断具体是哪种动作，这个延时的时长，系统有一个特定的值，可以通过 `ViewConfiguration` 获取。
+
+### 什么时候显示pressed状态？
+由于我们的页面是一个可以滑动并且可以下拉刷新的页面，因此，其页面上的按钮在处理touch事件时就需要考虑区分点击事件和滑动事件。具体到这里说的按钮的点击状态的问题，我们给按钮设置了 `OnTouchListener` ，肯定不能在收到 `ACTION_DOWN` 事件后立刻就设置着色（即设置为pressed状态），因为此时用户手刚接触屏幕，接下来可能是短点击，也可能是滑动，所以需要有一个延时来判断具体是哪种动作，这个延时的时长，系统有一个特定的值，可以通过 `ViewConfiguration` 获取。
 
 ![ViewConfiguration.java 源码截图](http://upload-images.jianshu.io/upload_images/71249-df155f102301cd49.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
@@ -72,7 +73,7 @@ case MotionEvent.ACTION_CANCEL:
 
 ```
 
-#### 还有一个小问题
+### 还有一个小问题
 实现到这一步，还有个问题：当点击稍微快一些的时候，经常是看不到按钮的pressed状态，即着色后的效果的。原因稍一想也很明显：前面讲到，为了区分滑动和点击，我们并没有在 `ACTION_DOWN` 的时候立刻着色，而是有一个延时，那么如果点击的时候从 `ACTION_DOWN` 到 `ACTION_UP` 的时间小于这个延时，就没有触发着色。
 
 怎么解决？测试发现用 `StateListDrawable` （即selector）的方式是没问题的，点击再快也有pressed效果。而且既然这个时延是从系统获得，那么我们不妨看看源码中是怎么解决这个问题的。开始我猜测源码应该是在ACTION_UP时候做了一次置为pressed状态的动作，然后一定短时间后再取消状态。这样视觉上可以达到效果。`StateListDrawable` （即selector）的方式，依赖于把View ```setPressed(true)```， 那我们就搜索这个方法的调用。查看 `TextView` 源码未发现，再到 `View` 源码，发现果然是这样的：
