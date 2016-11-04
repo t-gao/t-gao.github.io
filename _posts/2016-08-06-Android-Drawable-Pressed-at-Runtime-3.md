@@ -10,9 +10,9 @@ toc: true
 ---
 
 本文还是接续上两篇文章，继续聊运行时动态处理按钮点击状态的问题，本文是这个问题第三种解决方案，应该也是三个中最合理的方案。这三篇依次看下来，可以看到解决一个问题走过的弯路：
-1. [Android Drawable Pressed at Runtime - part 1](http://tangni.me/2016/08/Android-Drawable-Pressed-at-Runtime-1)
-2. [Android Drawable Pressed at Runtime - part 2](http://tangni.me/2016/08/Android-Drawable-Pressed-at-Runtime-2)
-3. [Android Drawable Pressed at Runtime - part 3 （本文）](http://tangni.me/2016/08/Android-Drawable-Pressed-at-Runtime-3)
+- [Android Drawable Pressed at Runtime - part 1](http://tangni.me/2016/08/Android-Drawable-Pressed-at-Runtime-1)
+- [Android Drawable Pressed at Runtime - part 2](http://tangni.me/2016/08/Android-Drawable-Pressed-at-Runtime-2)
+- [Android Drawable Pressed at Runtime - part 3 （本文）](http://tangni.me/2016/08/Android-Drawable-Pressed-at-Runtime-3)
 
 也许本文还是弯路（或许再探索一下源码还可以发现更好的方案），不过走弯路也不是完全没有意义，走弯路过程中用到的一些方法也许可以在其他的场景下提供一些启发。
 
@@ -37,6 +37,7 @@ DrawableCompat.setTintList(finalDrawable, colorStateList);
 DrawableCompat.setTintMode(finalDrawable, PorterDuff.Mode.SRC_ATOP);
 ```
 
+ 
 ### 问题所在
 
 这段代码跑在API 21 及以上的设备上时，在按下按钮后并没有着色效果。

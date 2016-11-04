@@ -24,6 +24,7 @@ toc: true
 
 本文结合我们项目中的实践讲一种思路，供参考，如有更好的方案请观众们赐教。
 
+ 
 ### 一、固定形状图标
 
 我们APP的主页面顶部类似美团外卖，是几排不固定数量的图标，表示应用的各个功能入口。第一版时，产品的需求和UI设计出来后，确定这些图标一定圆形图标，而且近几版内不会变为其他形状。那么一个图标的normal状态和pressed状态大概如下图所示，按下时稍有变暗。下面以微信的图标为例。
@@ -123,6 +124,7 @@ Bitmap pressedMask = BitmapFactory.decodeResource(context.getResources(), R.draw
 
 至此，满足需求，一切都很好。巴特，as always，需求是会变的。
 
+ 
 ### 二、不定形状图标
  
 #### 1. 需求思考
@@ -135,6 +137,7 @@ Bitmap pressedMask = BitmapFactory.decodeResource(context.getResources(), R.draw
 
 这时候是不是想，如果能把round_press_mask.png 裁剪成需要的形状就好了（需要保证 round_press_mask.png 尺寸足够大）。
 
+ 
 #### 2. PorterDuff.Mode
 说到这，应该忽然想起来 **PorterDuff** 这个东西了。PorterDuff这个单词查词典基本查不到，其实是关于图像处理的一篇论文的两个作者Thomas Porter 和 Tom Duff 的名字的合成词。定义了一系列处理图像的方式，感兴趣可以查看[这篇文章](http://ssp.impulsetrain.com/porterduff.html)，当然，如果对学术有兴趣的话，也可以看[原论文](http://keithp.com/~keithp/porterduff/p253-porter.pdf) （在下是不敢看的 -_-）。安卓中源码：
 

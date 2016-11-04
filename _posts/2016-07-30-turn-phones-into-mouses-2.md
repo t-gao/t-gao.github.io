@@ -80,7 +80,7 @@ public class UIFrame extends JFrame {
 
 到此，server已经完成了生成并显示二维码的工作。
 
-
+ 
 #### Client
 手机端使用了 **journeyapps** 的[这个库](https://github.com/journeyapps/zxing-android-embedded)，是在zxing库基础之上的一次封装，封装成一个Android library project，可以在Android studio里面作为module引用。
 都是开源的代码，我只是拿过来用了，就不多介绍了。总之扫描二维码解析得到其中的ip后就可以创建socket连接电脑了。
