@@ -53,4 +53,4 @@ exclude: ['README.md', 'LICENSE']
 collections:
   my_tags:
     output: true
-    permalink: /blog/tag/:name/
+    permalink: /tag/:name/
