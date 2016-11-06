@@ -2,7 +2,8 @@
 layout: page
 ---
 
-<div class="text-justify">
+<div class="post">
+  <h2>Articles by tag:</h2>
   {% if site.tags[page.slug] %}
     <ul>
     {% for post in site.tags[page.slug] %}
