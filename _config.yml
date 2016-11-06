@@ -49,3 +49,8 @@ highlighter: rouge
 #  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "tables", "with_toc_data"]
 
 exclude: ['README.md', 'LICENSE']
+
+collections:
+  my_tags:
+    output: true
+    permalink: /blog/tag/:name/
