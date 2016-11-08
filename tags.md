@@ -5,7 +5,7 @@ title: Tags
 ---
 
 <div class="page-content wc-container">
-	<div class="post">
+	<div class="sidebar">
 		<h1>Tags</h1>  
 		<ul>
 			{% for tag in site.my_tags %}
