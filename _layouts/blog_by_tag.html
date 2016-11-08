@@ -6,7 +6,8 @@
       <div class="row">
         <div class="col-md-8">
           <div class="post">
-              <h1>Articles by tag <b>{{ page.title }}</b></h1>
+              <h2>Articles by tag <b>{{ page.title }}:</b></h2>
+              <br>
               {% if site.tags[page.slug] %}
                 <ul>
                 {% for post in site.tags[page.slug] %}

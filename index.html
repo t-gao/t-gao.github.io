@@ -15,8 +15,12 @@ layout: page
     <time>{{ post.date | date_to_string }}</time>
   </div>
   <ul>
-    {% for tag in post.tags %}
-    <li><a href="{{ tag.url }}">{{ tag.name }}</a></li>
+    {% for post_tag in post.tags %}
+        {% assign tag = site.my_tags | where: "slug", post_tag %}
+        {% if tag %}
+          {% assign tag = tag[0] %}
+          <li><a href="{{ tag.url }}">{{ tag.name }}</a></li>
+        {% endif %}
     {% endfor %}
   </ul>
   </div>
