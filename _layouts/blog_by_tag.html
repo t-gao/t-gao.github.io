@@ -1,13 +1,28 @@
-<div class="post">
-  <h2>Articles by tag:</h2>
-  {% if site.tags[page.slug] %}
-    <ul>
-    {% for post in site.tags[page.slug] %}
-      <li><a class="archive_list_article_link" href='{{post.url | prepend:site.baseurl | prepend:site.url}}'>{{post.title}}</a></li>
-    {% endfor %}
-    </ul>
-  {% else %}
-    <p>There are no posts in this tag.</p>
-  {% endif %}
-</div>
+{% include header.html %}
 
+<div class="wrapper">
+  <div class="content">
+    <div class="container container-center">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="post">
+              <h1>Articles by tag <b>{{ page.title }}</b></h1>
+              {% if site.tags[page.slug] %}
+                <ul>
+                {% for post in site.tags[page.slug] %}
+                  <li><a class="archive_list_article_link" href='{{post.url | prepend:site.baseurl | prepend:site.url}}'>{{post.title}}</a></li>
+                {% endfor %}
+                </ul>
+              {% else %}
+                <p>There are no posts in this tag.</p>
+              {% endif %}
+            </div>
+        </div>
+        <div class="col-md-4 hidden-xs">
+          {% include sidebar.html %}
+        </div>
+      </div>
+    </div>
+  </div>
+  {% include footer.html %}
+</div>
