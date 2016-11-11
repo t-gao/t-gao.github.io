@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "一种基于Retrofit 1.x的简单Mock机制"
+title: "一种基于 Retrofit 1.x 的简单 Mock 机制"
 date: 2016-11-10 19:44:12 +0800
 comments: true
 tags: [Retrofit]
@@ -14,10 +14,12 @@ toc: true
 
 本文介绍我们项目基于 **Retrofit 1.9.0** 的一直简单的 Mock 实现。[Retrofit 2.x](https://square.github.io/retrofit/) 已经出来很长时间了，而且 2.x 有 [內建的 Mock 机制](https://github.com/square/retrofit/blob/master/samples/src/main/java/com/example/retrofit/SimpleMockService.java)，所以对于 2.x，本文就没有直接意义了。俺们为什么没有升级 2.x，因为正如选择一个第三方库是一个需要十分慎重的决定一样，升级一个第三方库也需要慎重，尤其是大版本升级。Retrofit 2.x 相对于1.x 有很大的变化，在俺们的项目目前用 1.9.0 没有出过什么问题的情况下，不想冒险去升级2.x 。所以基于 1.9.0 实现了这很简单的 Mock，只在 Retrofit 1.9.0 测试过，但是相信 Retrofit 1.x 都能使用。
 
+ 
 #### 发现突破口
 关于 Retrofit 的使用，前面的 [这篇文章](http://tangni.me/2016/06/Retrofit-With-EventBus) 已经有介绍。
 Retrofit 1.x 需要先 `new RestAdapter.Builder()`，并且需要调用这个 Builder 实例的 `setClient(final Client client)` 方法来设置 Client （这里这个 Client 的类型是 `retrofit.client.Client`）。一般来说，也可以不调用 `setClient()`， `RestAdapter` 的 `ensureSaneDefaults()` 方法保证了有默认值可以使用，具体可查看源码。查看源码可以发现 `retrofit.client.Client` 的 `Response execute(Request request)` 方法就是执行 Request 并得到 Response 的地方。那么我们就可以在这里入手做些文章。
 
+ 
 #### 实现
 用装饰者模式，实现 Client 接口，把本来的 Client 包装一下，来给 `execute()` 方法增加 mock 的职能。
 
@@ -222,6 +224,7 @@ public class MockServer {
 ```
 
 最后，使用：
+
 ```java
 RestAdapter restAdapter = new RestAdapter.Builder()
 		.setLogLevel(Constants.DEBUG ? RestAdapter.LogLevel.FULL : RestAdapter.LogLevel.NONE)
