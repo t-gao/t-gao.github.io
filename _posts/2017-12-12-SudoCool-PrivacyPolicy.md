@@ -2,10 +2,10 @@
 layout: post
 title: "Privacy Policy of SudoCool"
 date: 2017-12-12 20:23:12 +0800
-comments: false
-tags: []
+comments: true
+tags: [Android]
 description: Privacy Policy of the Game SudoCool
-comments: false
+comments: true
 toc: true
 ---
 
