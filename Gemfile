@@ -1,2 +1,4 @@
-source 'https://ruby.taobao.org/'
-gem 'github-pages'
+#source 'https://ruby.taobao.org/'
+source 'https://rubygems.org'
+gem 'github-pages', group: :jekyll_plugins
+
